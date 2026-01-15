@@ -9,9 +9,10 @@ class Portfolio extends Model
 {
     use HasFactory;
 
+    protected $table = 'portfolios';
+
     protected $fillable = [
-        'title',
-        'description',
         'image',
+        'description'
     ];
 }

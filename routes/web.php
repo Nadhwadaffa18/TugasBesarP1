@@ -1,28 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PageController::class, 'home'])->name('home');
 
-Route::get('/tentang', function () {
-    return view('tentang');
-});
+Route::get('/tentang', [PageController::class, 'tentang']);
 
-Route::get('/layanan', function () {
-    return view('layanan');
-});
+Route::get('/layanan', [PageController::class, 'layanan']);
 
-// keep legacy path and redirect to resource index
-Route::get('/portofolio', function () {
-    return redirect()->route('portfolios.index');
-});
+Route::get('/portofolio', [PageController::class, 'portofolio']);
 
-Route::get('/kontak', function () {
-    return view('kontak');
-});
+Route::get('/kontak', [PageController::class, 'kontak']);
 
-// Resource routes for CRUD
-Route::resource('portfolios', PortfolioController::class);
+Route::post('/kontak', [PageController::class, 'kontakStore']);
+
+// Admin Routes
+Route::prefix('admin')->name('portfolios.')->group(function () {
+    Route::get('portfolios', [PortfolioController::class, 'index'])->name('index');
+    Route::get('portfolios/create', [PortfolioController::class, 'create'])->name('create');
+    Route::post('portfolios', [PortfolioController::class, 'store'])->name('store');
+    Route::get('portfolios/{portfolio}', [PortfolioController::class, 'show'])->name('show');
+    Route::get('portfolios/{portfolio}/edit', [PortfolioController::class, 'edit'])->name('edit');
+    Route::put('portfolios/{portfolio}', [PortfolioController::class, 'update'])->name('update');
+    Route::delete('portfolios/{portfolio}', [PortfolioController::class, 'destroy'])->name('destroy');
+});

@@ -1,3 +1,3 @@
 <footer class="footer">
-    <p>&copy; {{ date('Y') }} Situs fotografi</p>
+    <p>&copy; {{ date('Y') }} Studio</p>
 </footer>

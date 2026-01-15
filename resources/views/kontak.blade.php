@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak - situs_fotografi.photo')
+@section('title', 'Kontak - Blog Fotografi Daffa')
 
 @section('content')
 <section class="contact">
@@ -16,8 +16,8 @@
             </p>
 
             <ul class="contact-list">
-                <li>Email: situs_fotografi@email.com</li>
-                <li>Instagram: @situs_fotografi.photo</li>
+                <li>Email: studio@email.com</li>
+                <li>Instagram: @studio</li>
                 <li>Lokasi: Indonesia</li>
             </ul>
         </div>

@@ -10,71 +10,84 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $items = Portfolio::latest()->paginate(9);
-        return view('portfolios.index', compact('items'));
+        $portfolios = Portfolio::all();
+        return view('admin.portfolios.index', compact('portfolios'));
     }
 
     public function create()
     {
-        return view('portfolios.create');
+        return view('admin.portfolios.create');
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+        $validated = $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string|min:10',
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $imagePath = $file->storeAs('portfolios', $filename, 'public');
+            $validated['image'] = $imagePath;
         }
 
-        Portfolio::create($data);
+        Portfolio::create($validated);
 
-        return redirect()->route('portfolios.index')->with('success', 'Portfolio berhasil dibuat.');
+        return redirect()
+            ->route('portfolios.index')
+            ->with('success', 'Portfolio berhasil ditambahkan!');
     }
 
     public function show(Portfolio $portfolio)
     {
-        return view('portfolios.show', ['item' => $portfolio]);
+        return view('admin.portfolios.show', compact('portfolio'));
     }
 
     public function edit(Portfolio $portfolio)
     {
-        return view('portfolios.edit', ['item' => $portfolio]);
+        return view('admin.portfolios.edit', compact('portfolio'));
     }
 
     public function update(Request $request, Portfolio $portfolio)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+        $validated = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string|min:10',
         ]);
 
         if ($request->hasFile('image')) {
-            // remove old image
-            if ($portfolio->image) {
+            // Delete old image
+            if ($portfolio->image && Storage::disk('public')->exists($portfolio->image)) {
                 Storage::disk('public')->delete($portfolio->image);
             }
-            $data['image'] = $request->file('image')->store('images', 'public');
+            
+            // Store new image
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $imagePath = $file->storeAs('portfolios', $filename, 'public');
+            $validated['image'] = $imagePath;
         }
 
-        $portfolio->update($data);
+        $portfolio->update($validated);
 
-        return redirect()->route('portfolios.index')->with('success', 'Portfolio diperbarui.');
+        return redirect()
+            ->route('portfolios.index')
+            ->with('success', 'Portfolio berhasil diperbarui!');
     }
 
     public function destroy(Portfolio $portfolio)
     {
-        if ($portfolio->image) {
+        // Delete image file
+        if ($portfolio->image && Storage::disk('public')->exists($portfolio->image)) {
             Storage::disk('public')->delete($portfolio->image);
         }
 
         $portfolio->delete();
 
-        return redirect()->route('portfolios.index')->with('success', 'Portfolio dihapus.');
+        return redirect()
+            ->route('portfolios.index')
+            ->with('success', 'Portfolio berhasil dihapus!');
     }
 }

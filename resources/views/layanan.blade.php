@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Layanan - situs_fotografi.photo')
+@section('title', 'Layanan - Blog Fotografi Daffa')
 
 @section('content')
 <section class="services">
