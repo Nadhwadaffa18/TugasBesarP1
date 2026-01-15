@@ -14,29 +14,26 @@
     </div>
 
     <div class="portfolio-grid">
-        <div class="portfolio-item">
-            <img src="https://picsum.photos/id/1015/800/600" alt="Karya 1">
-        </div>
+        @forelse($portfolios as $portfolio)
+            <div class="portfolio-item">
+                <img 
+                    src="{{ $portfolio->image }}" 
+                    alt="Portfolio"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover;"
+                >
 
-        <div class="portfolio-item tall">
-            <img src="https://picsum.photos/id/1011/800/1000" alt="Karya 2">
-        </div>
-
-        <div class="portfolio-item">
-            <img src="https://picsum.photos/id/1016/800/600" alt="Karya 3">
-        </div>
-
-        <div class="portfolio-item wide">
-            <img src="https://picsum.photos/id/1024/1200/600" alt="Karya 4">
-        </div>
-
-        <div class="portfolio-item">
-            <img src="https://picsum.photos/id/1027/800/600" alt="Karya 5">
-        </div>
-
-        <div class="portfolio-item">
-            <img src="https://picsum.photos/id/1035/800/600" alt="Karya 6">
-        </div>
+                <div class="portfolio-overlay">
+                    <p class="portfolio-description">
+                        {{ $portfolio->description }}
+                    </p>
+                </div>
+            </div>
+        @empty
+            <p style="grid-column:1/-1;text-align:center;">
+                Belum ada portofolio
+            </p>
+        @endforelse
     </div>
 </section>
 @endsection

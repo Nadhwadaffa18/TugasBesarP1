@@ -1,6 +1,6 @@
 <header class="navbar">
     <div class="container nav-wrap">
-        <div class="brand">Situs Fotografi</div>
+        <div class="brand">Studio</div>
 
        <nav class="menu">
             <a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">BERANDA</a>

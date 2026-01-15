@@ -1,28 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang Saya - Blog Fotografi Daffa')
+@section('title', 'Tentang Studio - Blog Fotografi')
 
 @section('content')
 <section class="about">
     <div class="about-container">
         <div class="about-text">
-            <h1>Tentang </h1>
+            <h1>Tentang Studio</h1>
             <p>
-                seorang fotografer yang berfokus pada
-                fotografi potret, event, dan dokumentasi kreatif.
-                Fotografi bagi saya bukan hanya gambar,
-                tetapi cerita yang diabadikan dalam satu frame.
+                <strong>Studio</strong> adalah studio fotografi yang bergerak
+                di bidang fotorafi potret, event, dan dokumentasi kreatif.
+                Kami percaya bahwa setiap foto memiliki cerita dan emosi
+                yang layak diabadikan dalam satu frame terbaik.
             </p>
 
             <p>
-                Dengan pengalaman dan gaya visual yang konsisten,
-                saya siap membantu mengabadikan momen terbaik Anda
+                Dengan tim profesional, peralatan berkualitas,
+                dan gaya visual yang konsisten,
+                Daffa Studio siap membantu mengabadikan momen penting Anda
                 melalui karya fotografi yang berkelas dan bermakna.
             </p>
 
-            <a href="/kontak" class="btn-primary">Hubungi Saya</a>
+            <a href="/kontak" class="btn-primary">Hubungi Studio</a>
         </div>
 
         <div class="about-image">
-            <img src="{{ asset('images/profile.jpg') }}" alt="Foto ">
+            <img src="{{ asset('https://www.tagvenue.com/blog/wp-content/uploads/2023/03/flower-wall-tagvenue.jpg') }}" alt="Foto Studio Daffa">
         </div>

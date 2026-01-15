@@ -12,15 +12,7 @@
 @include('partials.navbar')
 
 <main>
-    <div class="container" style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        @if(session('success'))
-            <div class="flash-success" style="background:#e6f6ea;border:1px solid #cfe9d6;padding:12px 18px;border-radius:8px;margin-bottom:18px;color:#226622;">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @yield('content')
-    </div>
+    @yield('content')
 </main>
 
 @include('partials.footer')
