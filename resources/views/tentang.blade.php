@@ -3,7 +3,7 @@
 @section('title', 'Tentang Studio - Blog Fotografi')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ secure_asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
 @endpush
 
 @section('content')

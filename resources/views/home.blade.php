@@ -3,7 +3,7 @@
 @section('title', 'Beranda - Blog Fotografi')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ secure_asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
 @endpush
 
 @section('content')

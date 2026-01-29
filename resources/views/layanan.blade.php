@@ -3,7 +3,7 @@
 @section('title', 'Layanan - Blog Fotografi Daffa')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ secure_asset('css/services.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
 @endpush
 
 @section('content')
