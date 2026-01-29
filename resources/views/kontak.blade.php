@@ -2,6 +2,10 @@
 
 @section('title', 'Kontak - Blog Fotografi Daffa')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ secure_asset('css/contact.css') }}">
+@endpush
+
 @section('content')
 <section class="contact">
     <div class="contact-wrapper">

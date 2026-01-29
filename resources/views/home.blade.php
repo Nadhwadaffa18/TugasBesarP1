@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda - Blog Fotografi ')
+@section('title', 'Beranda - Blog Fotografi')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ secure_asset('css/home.css') }}">
+@endpush
 
 @section('content')
 <section class="hero">
@@ -11,6 +15,6 @@
         Lihat karya saya dan hubungi saya untuk sesi pemotretan.
     </p>
 
-    <a href="#" class="btn-primary">Lihat Portofolio</a>
+    <a href="{{ url('/portofolio') }}" class="btn-primary">Lihat Portofolio</a>
 </section>
 @endsection
